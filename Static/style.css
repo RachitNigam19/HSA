@@ -1,0 +1,162 @@
+/* 🔥 Overall Styling */
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✨ Headline */
+h1 {
+  font-size: 3em;
+  color: #ffcc00;
+  text-shadow: 2px 2px 15px rgba(255, 204, 0, 0.8);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+/* 🚀 CTA Button Fix */
+button, .pulse {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff9900, #ff5f6d);
+  padding: 15px 35px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  animation: pulseGlow 1.5s infinite alternate;
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.6);
+  margin-top: 15px;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255, 94, 107, 0.9);
+}
+
+/* 🎯 AI Image Generator Box */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 550px;
+  margin: 40px auto;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  color: white;
+  animation: slideUp 1s ease-out;
+}
+
+/* 🔄 Fixing Input Field Alignment */
+input[type="text"] {
+  width: 90%;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+}
+.input-group{
+  padding: 5px;
+}
+/* 🔥 Button Group (Social Media) */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  padding-bottom: 8px;
+}
+
+.button-group button {
+  background: linear-gradient(90deg, #ffcc00, #ff6600);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-group button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+}
+
+/* 🚀 Generate Button */
+.generate-btn {
+  background: linear-gradient(90deg, #ffcc00, #ff6600);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  background: linear-gradient(90deg, #ffdf00, #ff4500);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.9);
+}
+
+/* 🔥 Footer */
+footer {
+  margin-top: 30px;
+  font-size: 1em;
+  color: #ffcc00;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* 🔥 Animations */
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(255, 94, 107, 1); }
+  100% { box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); }
+}
+
+/* 📢 Marketing Section */
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

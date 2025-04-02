@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>AI Image Generator</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="heading">AI Image Generator</h1>
+            <div class="button-group">
+                <button id="btn-1-1" class="selected" onclick="setRatio('1:1', 'btn-1-1')">Instagram</button>
+                <button id="btn-16-9" onclick="setRatio('16:9', 'btn-16-9')">Facebook</button>
+                <button id="btn-4-3" onclick="setRatio('4:3', 'btn-4-3')">Blog Post</button>
+            </div>
+        </header>
+
+        <div class="input-group">
+            <label for="topic">Topic Name:</label>
+            <input type="text" id="topic" placeholder="Enter topic name for file...">
+        </div>
+
+        <div class="input-group">
+            <label for="prompt">Prompt:</label>
+            <input type="text" id="prompt" placeholder="Enter a prompt...">
+        </div>
+        <button class="generate" onclick="generateImage()">Generate Image</button>
+
+        <p id="message"></p>
+
+        <img id="outputImage" alt="Generated Image" style="display:none; max-width: 100%; margin-top: 20px;">
+
+        <a id="downloadBtn" class="btn" style="display:none;" href="" download>
+            <button><i class="fa fa-download"></i> Download</button>
+        </a>
+    </div>
+    <footer>
+        <p>Free advanced AI Image generation tool by
+            <a href="https://helpstudyabroad.com/" target="_blank">HelpStudyAbroad</a>
+        </p>
+    </footer>
+
+    <script>
+        let selectedRatio = '1:1';
+
+        function setRatio(ratio, btnId) {
+            selectedRatio = ratio;
+            document.querySelectorAll('.button-group button').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById(btnId).classList.add('selected');
+        }
+
+        function generateImage() {
+            const prompt = document.getElementById("prompt").value;
+            const topic = document.getElementById("topic").value || "generated-image";
+            document.getElementById("message").innerText = "Generating...";
+
+            fetch('/generate', {
+                method: 'POST',
+                body: new URLSearchParams({ 'prompt': prompt, 'ratio': selectedRatio, 'topic': topic }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.image) {
+                        const imageSrc = "data:image/png;base64," + data.image;
+                        const outputImage = document.getElementById("outputImage");
+                        const downloadBtn = document.getElementById("downloadBtn");
+
+                        outputImage.src = imageSrc;
+                        outputImage.style.display = "block";
+
+                        downloadBtn.href = imageSrc;
+                        downloadBtn.style.display = "inline-block";
+                        downloadBtn.download = `${topic}.png`;
+
+                        document.getElementById("message").innerText = "";
+                    } else {
+                        document.getElementById("message").innerText = "Failed to generate image. Try again.";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("message").innerText = "An error occurred. Please try again.";
+                });
+        }
+    </script>
+</body>
+
+</html>
